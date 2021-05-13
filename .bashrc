@@ -2,27 +2,29 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
+
+# Aliases for ls
+ # enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
 
 
 # User specific aliases and functions
-alias path='echo $(id -un)@$(hostname):$(pwd)'
-alias ts='date +%s'
-date_to_timestamp() {
-  date -d @$1 "+%m-%d-%Y %T"
-}
-alias dt=date_to_timestamp
-
-
-# Load in the git branch prompt script.
-source ~/.git-prompt.sh
-source ~/.git-completion.sh
-
-# If id command returns zero, you’ve root access.
-if [ $(id -u) -eq 0 ];
-then # you are root, set red colour prompt
-  PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w#\\[$(tput sgr0)\\]\$(__git_ps1) "
-else # normal
-  PS1='[\u@\h \W$(__git_ps1 "(%s)")]\$ '
-fi
+#export PYTHONPATH=$HOME/.pystartup
+export PATH=$PATH:/usr/local/mysql/bin

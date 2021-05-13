@@ -3,13 +3,14 @@ if has("mouse")
 endif
 :set wildmode=list:longest
 :set nu
+:set ruler
 :set tabstop=4
 :set shiftwidth=4
 :set expandtab
 syntax on
 set clipboard=unnamed
 if exists('&colorcolumn')
-    set colorcolumn:80
+    set colorcolumn:100
 endif
 set hlsearch
 " Tell vim to remember certain things when we exit
@@ -42,6 +43,13 @@ highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Re
 highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
+" :set cursorline
+:hi CursorLine   cterm=NONE ctermbg=lightred ctermfg=white guibg=darkred guifg=white
+:hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
 let g:vim_markdown_folding_disabled=1
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 silent vertical all
+
+au BufRead,BufNewFile *.pyst set filetype=python
